@@ -25,11 +25,11 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# CORS配置
+# CORS配置 - 允许所有来源跨域访问
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
