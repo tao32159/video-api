@@ -109,7 +109,14 @@ async def read_root():
 
 @app.get("/api/health")
 async def health_check():
-    return {"status": "healthy", "timestamp": datetime.now().isoformat()}
+    import yt_dlp
+    import socket
+    return {
+        "status": "healthy",
+        "yt_dlp_version": yt_dlp.version.__version__,
+        "server_ip": socket.gethostbyname(socket.gethostname()),
+        "timestamp": datetime.now().isoformat()
+    }
 
 @app.post("/api/process", response_model=ProcessVideoResponse)
 async def process_video(request: ProcessVideoRequest):
